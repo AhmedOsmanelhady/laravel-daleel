@@ -1,0 +1,16 @@
+return [
+            "id" => $this->id,
+            "name" => $this->name,
+            "title" => $this->title,
+            "image" => $this->image_url,
+            "rating" =>
+                $this->reviews->count() > 0
+                    ? round(
+                        $this->reviews->sum("star") / $this->reviews->count(),
+                        2
+                    )
+                    : "No rating yet",
+            "details" => [
+                "link" => route("doctor.show", $this->id),
+            ],
+        ];
